@@ -1,11 +1,30 @@
 {
-  "name": "scryfall",
+  "name": "wantorganizer",
   "version": "1.0.0",
   "description": "Programinha que eu fiz pra automatizar a organização da minha want de cartas de magic usando a API do scryfall.",
   "main": "index.js",
+  "dependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-google": "^0.10.0",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.2.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Treeek/WantOrganizer.git"
+  },
+  "keywords": [
+    "mtg"
+  ],
   "author": "John",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Treeek/WantOrganizer/issues"
+  },
+  "homepage": "https://github.com/Treeek/WantOrganizer#readme"
 }
