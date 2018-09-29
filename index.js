@@ -1,8 +1,7 @@
 const fetch = require("node-fetch");
 const getList = require("./planilha");
 const urlScryfall = "https://api.scryfall.com/cards/named?exact=";
-const listaTipos = [];
-const listaPolida = [];
+
 
 async function boot() {
 	try {
