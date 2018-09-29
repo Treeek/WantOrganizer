@@ -20,8 +20,27 @@ async function boot() {
 			});
 			listaPolida.push(carta);
 		}
+		for (const carta of listaPolida) {
+			const tipoCarta = carta.tipo.split(" —")[0];
+			if (!listaTipos.includes(tipoCarta)) {
+				listaTipos.push(tipoCarta);
+			}
+		}
+		listaTipos.sort((a, b) => a !== b ? a < b ? -1 : 1 : 0);
+		for (const tipo of listaTipos) {
+			console.log(tipo.toUpperCase());
+			let qtd = 0;
+			for (const carta of listaPolida) {
+				if (carta.tipo.split(" —")[0] == tipo) {
+					qtd++;
+					console.log("\t", carta.nome);
+				}
+			}
+			console.log("\ttotal:", qtd);
+		}
+		console.log("total:", listaPolida.length);
 	} catch (err) {
-		console.warn(err);
+		console.warn("Erro:", err);
 	}
 }
 
