@@ -1,0 +1,11 @@
+{
+  "name": "scryfall",
+  "version": "1.0.0",
+  "description": "Programinha que eu fiz pra automatizar a organização da minha want de cartas de magic usando a API do scryfall.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John",
+  "license": "MIT"
+}
