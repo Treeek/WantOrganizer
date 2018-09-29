@@ -2,10 +2,19 @@ const fetch = require("node-fetch");
 const getList = require("./planilha");
 const urlScryfall = "https://api.scryfall.com/cards/named?exact=";
 
+function limparTipo(tipoCarta) {
+	const listaSupertipos = ["Legendary", "Basic"];
+	for (const superTipo of listaSupertipos) {
+		tipoCarta = tipoCarta.replace(superTipo, "");
+	}
+	tipoCarta = tipoCarta.split(" —")[0];
+	tipoCarta = tipoCarta.replace(/ /g, "");
+	return tipoCarta;
+}
 
 async function boot() {
 	try {
-		const listaSupertipos = ["Legendary", "Basic"];
+
 		const listaTipos = [];
 		const listaPolida = [];
 		const list = await getList();
@@ -23,28 +32,26 @@ async function boot() {
 		}
 		for (const carta of listaPolida) {
 			let tipoCarta = carta.tipo;
-			for (const superTipo of listaSupertipos) {
-				tipoCarta = tipoCarta.replace(superTipo, "");
-			}
-			tipoCarta = tipoCarta.split(" —")[0];
-			tipoCarta = tipoCarta.replace(/ /g, "");
+			tipoCarta = limparTipo(tipoCarta);
 			if (!listaTipos.includes(tipoCarta)) {
 				listaTipos.push(tipoCarta);
 			}
 		}
 		listaTipos.sort((a, b) => a !== b ? a < b ? -1 : 1 : 0);
+		let qtdTotal = 0;
 		for (const tipo of listaTipos) {
 			console.log(tipo.toUpperCase());
-			let qtd = 0;
+			let qtdCarta = 0;
 			for (const carta of listaPolida) {
-				if (carta.tipo.split(" —")[0] == tipo) {
-					qtd++;
+				if (limparTipo(carta.tipo) == tipo) {
+					qtdCarta += parseInt(carta.quantidade);
 					console.log("\t", carta.nome);
 				}
 			}
-			console.log("\ttotal:", qtd);
+			qtdTotal += qtdCarta;
+			console.log("\ttotal:", qtdCarta);
 		}
-		console.log("total:", listaPolida.length);
+		console.log("total:", qtdTotal, "cartas");
 	} catch (err) {
 		console.warn("Erro:", err);
 	}
