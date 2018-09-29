@@ -8,6 +8,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-google": "^0.10.0",
     "fetch": "^1.1.0",
+    "google-spreadsheet": "^2.0.5",
     "node-fetch": "^2.2.0"
   },
   "devDependencies": {},
