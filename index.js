@@ -5,6 +5,7 @@ const urlScryfall = "https://api.scryfall.com/cards/named?exact=";
 
 async function boot() {
 	try {
+		const listaSupertipos = ["Legendary", "Basic"];
 		const listaTipos = [];
 		const listaPolida = [];
 		const list = await getList();
@@ -21,7 +22,12 @@ async function boot() {
 			listaPolida.push(carta);
 		}
 		for (const carta of listaPolida) {
-			const tipoCarta = carta.tipo.split(" —")[0];
+			let tipoCarta = carta.tipo;
+			for (const superTipo of listaSupertipos) {
+				tipoCarta = tipoCarta.replace(superTipo, "");
+			}
+			tipoCarta = tipoCarta.split(" —")[0];
+			tipoCarta = tipoCarta.replace(/ /g, "");
 			if (!listaTipos.includes(tipoCarta)) {
 				listaTipos.push(tipoCarta);
 			}
