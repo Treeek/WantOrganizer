@@ -5,17 +5,24 @@ const urlScryfall = "https://api.scryfall.com/cards/named?exact=";
 
 async function boot() {
 	try {
+		const listaTipos = [];
+		const listaPolida = [];
 		const list = await getList();
 		for (const row of list) {
-			fetch(urlScryfall + row.nome).then((res) => {
+			let carta = await fetch(urlScryfall + row.nome).then((res) => {
 				return res.json();
 			}).then((carta) => {
-				console.log(carta.name, carta.type_line);
+				return {
+					nome: carta.name,
+					tipo: carta.type_line,
+					quantidade: row.quantidade
+				};
 			});
+			listaPolida.push(carta);
 		}
-
 	} catch (err) {
 		console.warn(err);
 	}
 }
+
 boot();
