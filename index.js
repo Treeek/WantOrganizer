@@ -8,7 +8,7 @@ function limparTipo(tipoCarta) {
 		tipoCarta = tipoCarta.replace(superTipo, "");
 	}
 	tipoCarta = tipoCarta.split(" —")[0];
-	tipoCarta = tipoCarta.split(" //");
+	tipoCarta = tipoCarta.split(" //")[0];
 	tipoCarta = tipoCarta.replace(/ /g, "");
 	return tipoCarta;
 }
