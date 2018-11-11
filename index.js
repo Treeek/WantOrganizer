@@ -1,1 +1,1 @@
-module.exports = require("./src/WantOrganier");
+module.exports = require("./src/want-organizer");

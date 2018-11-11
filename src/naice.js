@@ -3,8 +3,6 @@ const getList = require("./src/planilha");
 const tipoResolver = require("./src/tipo-resolver");
 const urlScryfall = "https://api.scryfall.com/cards/named?exact=";
 
-
-
 async function boot() {
 	try {
 

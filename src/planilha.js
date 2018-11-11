@@ -1,24 +1,27 @@
 var GoogleSpreadsheet = require("google-spreadsheet");
 var creds = require("./client_secret.json");
-var doc = new GoogleSpreadsheet("1YOwMXbg0_r7_Mz3OmFNXNFn9ywD4zaeeSDS-NiIKU3w");
 
-const getList = () => {
+
+const getList = (linkPlanilha) => {
+	var doc = new GoogleSpreadsheet(linkPlanilha);
 	const listaCartas = [];
 	return new Promise((resolve, reject) => {
-		doc.useServiceAccountAuth(creds, function (err) {
-			doc.getRows(1, (err, rows) => {
-				if (err) {
-					reject(err);
-				}
-				for (const row of rows) {
-					listaCartas.push({
-						nome: row.nome,
-						quantidade: row.quantidade
-					});
-				}
-				resolve(listaCartas);
+		try {
+			doc.useServiceAccountAuth(creds, function (err) {
+				doc.getRows(1, (err, rows) => {
+					for (const row of rows) {
+						listaCartas.push({
+							nome: row.nome,
+							quantidade: (row.quantidade == "") ? 1 : row.quantidade
+						});
+					}
+					resolve(listaCartas);
+				});
 			});
-		});
+		} catch (err) {
+			console.log(err);
+			reject(err);
+		}
 	});
 };
 module.exports = getList;
