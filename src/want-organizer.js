@@ -18,32 +18,29 @@ WantOrganizer.want = async function (linkPlanilha) {
 			});
 		}
 		listaTipos.sort((a, b) => a !== b ? a < b ? -1 : 1 : 0);
-		let qtdTotal = 0;
+		let want = {};
+		want.total = 0;
 		for (const tipo of listaTipos) {
-			console.log(tipo.toUpperCase());
 			let qtdCarta = 0;
 			for (const carta of listaCartas) {
 				if (carta.tipo === tipo) {
 					qtdCarta += parseInt(carta.quantidade);
-					console.log("\t", carta.nome);
+					want[tipo] = carta;
 				}
 			}
-			qtdTotal += qtdCarta;
-			console.log("\ttotal:", qtdCarta);
+			want.total += qtdCarta;
 		}
-		console.log("total:", qtdTotal, "cartas");
+		return JSON.stringify(want);
 	} catch (err) {
 		console.log(err);
 	}
-
-
 };
 
 function tipoResolver(tipos) {
 	const tiposArray = ["Land", "Creature", "Enchantment", "Artifact", "Planeswalker", "Instant", "Sorcery"];
 	let maior = tiposArray.length;
 	tipos.forEach(tipo => {
-		if (tiposArray.indexOf(tipo) < maior) {
+		if (tiposArray.indexOf(tipo) < maior && tiposArray.indexOf(tipo) > -1) {
 			maior = tiposArray.indexOf(tipo);
 		}
 	});
@@ -66,4 +63,4 @@ async function fetchCarta(nomeCarta) {
 	}
 }
 
-WantOrganizer.want("1YOwMXbg0_r7_Mz3OmFNXNFn9ywD4zaeeSDS-NiIKU3w");
+module.exports = WantOrganizer;

@@ -2,16 +2,63 @@
   "name": "wantorganizer",
   "version": "1.0.0",
   "description": "Programinha que eu fiz pra automatizar a organização da minha want de cartas de magic usando a API do scryfall.",
+  "eslintConfig": {
+    "env": {
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "ava"
+    ],
+    "rules": {
+      "ava/assertion-arguments": "error",
+      "ava/max-asserts": [
+        "off",
+        5
+      ],
+      "ava/no-async-fn-without-await": "error",
+      "ava/no-cb-test": "off",
+      "ava/no-duplicate-modifiers": "error",
+      "ava/no-identical-title": "error",
+      "ava/no-ignored-test-files": "error",
+      "ava/no-import-test-files": "error",
+      "ava/no-invalid-end": "error",
+      "ava/no-nested-tests": "error",
+      "ava/no-only-test": "error",
+      "ava/no-skip-assert": "error",
+      "ava/no-skip-test": "error",
+      "ava/no-statement-after-end": "error",
+      "ava/no-todo-implementation": "error",
+      "ava/no-todo-test": "warn",
+      "ava/no-unknown-modifiers": "error",
+      "ava/prefer-async-await": "error",
+      "ava/prefer-power-assert": "off",
+      "ava/test-ended": "error",
+      "ava/test-title": [
+        "error",
+        "if-multiple"
+      ],
+      "ava/use-t-well": "error",
+      "ava/use-t": "error",
+      "ava/use-test": "error",
+      "ava/use-true-false": "error"
+    }
+  },
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^5.6.1",
+    "ava": "1.0.0-rc.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-ava": "^5.1.1",
     "fetch": "^1.1.0",
     "google-spreadsheet": "^2.0.5",
     "node-fetch": "^2.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
