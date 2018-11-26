@@ -50,7 +50,7 @@ function tipoResolver(tipos) {
 
 async function fetchCarta(nomeCarta) {
 	try {
-		let res = await fetch(`https://api.magicthegathering.io/v1/cards?name="${nomeCarta}"&rarity=Mythic Rare|Common|Uncommon|Rare`);
+		let res = await fetch(`https://api.magicthegathering.io/v1/cards?name="${nomeCarta}"&rarity=Mythic Rare|Common|Uncommon|Rare|Basic Land`);
 		let cartas = await res.json(); //diferentes versões da mesma carta
 		let carta = cartas.cards[0];
 		return {
